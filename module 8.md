@@ -1,6 +1,7 @@
 EXP NO:6 C PROGRAM PRINT THE LOWERCASE ENGLISH WORD CORRESPONDING TO THE NUMBER
 Aim:
 To write a C program print the lowercase English word corresponding to the number
+
 Algorithm:
 1.	Start
 - Initialize an integer variable n.
@@ -16,60 +17,74 @@ Algorithm:
  
 Program:
 ```
-         #include<stdio.h> 
-         #include<math.h>
-         int main()
-         {
-              int n;
-              scanf("%d",&n);
-              if(n>=1 && n<=pow(4,3))
-              {
-              switch(n)
-              {
-                case 5:
-                printf("seventy one");
-                break;
-                case 6:
-                printf("seventy two");
-                break;
-                case 13:
-                printf("seventy three");
-                break;
-                case 14:
-                printf("seventy four");
-                break;
-                case 15:
-                printf("seventy five");
-                break;
-                case 16:
-                printf("seventy six");
-                break;
-                case 5:
-                printf("seventy seven");
-                break;
-                case 6:
-                printf("seventy eight");
-                break;
-                case 13:
-                printf("seventy nine");
-                break;
-                default:
-                printf("Greater than 13");
-              }
+#include<stdio.h>
+int main()
+{
+    int a;
+    printf("Enter a number:");
+    scanf("%d",&a);
+    if(a>=71 && a<=79)
+    {
+        switch(a)
+        {
+            case 71:
+            printf("seventy one");
+            break;
+            
+            case 72:
+            printf("seventy two");
+            break;
+            
+            case 73:
+            printf("seventy three");
+            break;
+            
+            case 74:
+            printf("seventy four");
+            break;
+            
+            case 75:
+            printf("seventy five");
+            break;
+            
+            case 76:
+            	printf("seventy six");
+            	break;
+            case 77:
+            	printf("seventy seven");
+            	break;
+            case 78:
+            	printf("seventy eight");
+            	break;
+            case 79:
+            	printf("seventy nine");
+            	break;
+            
+        }
+    }
+    else
+    {
+        printf("Greater than 79");
+    }
+}
 ```
-
-
 
 
 Output:
 
-![image](https://github.com/user-attachments/assets/642440c1-d013-48de-bddb-4a36908c0531)
+
+![Screenshot 2025-04-26 223943](https://github.com/user-attachments/assets/13998f0f-4637-48c0-834c-a80a8e08b0c4)
+
+![Screenshot 2025-04-26 224015](https://github.com/user-attachments/assets/61b473de-19c7-4780-9a9c-d31e68b1e6ef)
+
+
 
 
 Result:
 Thus, the program is verified successfully
  
 EXP NO:7 C PROGRAM TO PRINT TEN SPACE-SEPARATED INTEGERS     IN A SINGLE  LINE DENOTING THE FREQUENCY OF EACH DIGIT FROM 0 TO 3 .
+
 Aim:
 To write a C program to print ten space-separated integers in a single line denoting the frequency of each digit from 0 to 3.
 Algorithm:
@@ -81,39 +96,36 @@ Algorithm:
 6.	End
  
 Program:
+
 ```
-   #include<stdio.h>
-   #include<string.h>
-   int main()
-   {
-         char a[50];
-         scanf("%s",a);
-         int l=strlen(a);
-         char h='0';
-         for(int i=0;i<4;i++)
-         {
-             int c=0;
-             for(int j=0;j<l;j++)
-             {
-                 if(a[j]==h)
-                 {
-                    c+=1;
-                 }
-             }
-             printf("%d ",c); h++;
-         }
-  }
+#include <stdio.h>
+
+int main() {
+    char a[50];
+    int h, i, c;
+
+    printf("Enter the string of digits: ");
+    scanf("%s", a);
+
+    for (h = 0; h <= 9; h++) {
+        c = 0;
+        for (i = 0; a[i] != '\0'; i++) {
+            if (a[i] == (h + '0')) { 
+                c++;
+            }
+        }
+
+        printf("%d ", c);
+    }
+
+    return 0;
+}
+
 ```
-
-
-
 
 Output:
 
-
-![image](https://github.com/user-attachments/assets/3dbb24a2-d45e-4196-9c87-252eeb97e745)
-
-
+![image](https://github.com/user-attachments/assets/88e32f51-932f-4fff-a971-afe49533729a)
 
 
 Result:
@@ -138,56 +150,69 @@ Free the memory allocated for each string in s Free the memory allocated for s
  
 Program:
 ```
-#include<stdio.h> #include<string.h> #include<stdlib.h>
-int next_per(int n, char **s)
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int next_permutation(int n, char **s)
 {
-for(int i = n - 1 ; i > 0 ; i--) if(strcmp(s[i],s[i-1]) > 0)
-{
-int j=i+1;
-for(;j<n;j++) if (strcmp(s[j],s[i-1])<=0) break; char *t=s[i-1];
-s[i-1]=s[j-1];
-s[j-1]=t;
-for(;i<n-1;i++,n--)
-{
-t=s[i]; s[i]=s[n-1]; s[n-1]=t;
-}
-return 1;
-}
-for(int i=0;i<n-1;i++,n--)
-{
-char *t=s[i]; s[i]=s[n-1]; s[n-1]=t;
-}
-return 0;
-}
-int main()
-{
-char **s; int n;
-scanf("%d",&n); s=calloc(n,sizeof(char*)); for(int i=0;i<n;i++)
-{
-s[i]=calloc(n,sizeof(char*)*5); scanf("%s",s[i]);
-}
-do
-{
-for(int i=0;i<n;i++) printf("%s%c",s[i],i==n-1?'\n':' ');
-}
-while(next_per(n,s));
- 
-{
-for(int i=0;i<n;i++) free (s[i]);
-free(s); return 0;
-}
+
+    int k = -1;
+    for (int i = 0; i < n-1; i++) {
+        if (strcmp(s[i], s[i+1]) < 0)
+            k = i;
+    }
+    if (k == -1) return 0; 
+
+    int l = -1;
+    for (int i = k+1; i < n; i++) {
+        if (strcmp(s[k], s[i]) < 0)
+            l = i;
+    }
+
+    char *tmp = s[k];
+    s[k] = s[l];
+    s[l] = tmp;
+
+    int i = k+1, j = n-1;
+    while (i < j) {
+        tmp = s[i];
+        s[i++] = s[j];
+        s[j--] = tmp;
+    }
+
+    return 1; 
 }
 
+int main()
+{
+	char **s;
+	int n;
+	scanf("%d", &n);
+	s = calloc(n, sizeof(char*));
+	for (int i = 0; i < n; i++)
+	{
+		s[i] = calloc(11, sizeof(char));
+		scanf("%s", s[i]);
+	}
+	do
+	{
+		for (int i = 0; i < n; i++)
+			printf("%s%c", s[i], i == n - 1 ? '\n' : ' ');
+	} while (next_permutation(n, s));
+	for (int i = 0; i < n; i++)
+		free(s[i]);
+	free(s);
+	return 0;
+}
 ```
 
 
 
-
 Output:
+![image](https://github.com/user-attachments/assets/2a42e40e-c0b7-44aa-88f3-ae2e7ac159d4)
 
-![image](https://github.com/user-attachments/assets/4c19916f-136e-4e22-8927-11a407b3f5c7)
-
-
+![Screenshot 2025-04-26 233518](https://github.com/user-attachments/assets/77f56d19-b3be-4cec-bbf6-432c0c3a5994)
 
 
 
@@ -211,36 +236,32 @@ Algorithm:
  
 Program:
 ```
-#include<stdio.h> int main()
+#include<stdio.h>
+#include<stdlib.h>
+int single(int x,int y)
 {
-int n,i,j,min; scanf("%d",&n);
-int len=n*2-1; for (i=0;i<len;i++)
+    return x>y?x:y;
+}
+int main()
 {
-for (j=0;j<len;j++)
-{
-min=i<j?i:j;
-min=min<len-i-1?min:len-1-i; min=min<len-j-1?min:len-1-j; printf("%d ",n-min);
+    int a;
+    scanf("%d",&a);
+    for(int i=0;i<(a*2)-1;i++){
+        for(int j=0;j<(a*2)-1;j++)
+        {
+         printf("%d ",single(abs(a-i-1),abs(a-j-1))+1);   
+        }printf("\n");
+    }
 }
-printf("\n");
-}
-return 0;
-}
-
 
 ```
 
 
-
-
 Output:
-
-![image](https://github.com/user-attachments/assets/f11a67e7-fe42-4710-928f-96b2e219d5a9)
-
+![image](https://github.com/user-attachments/assets/9e3c07a7-b71a-4e78-8d58-645854814cb6)
 
 
-
-
-
+![image](https://github.com/user-attachments/assets/7b3cf4af-be2b-41ed-a078-4b1715a7f2c0)
 
 Result:
 Thus, the program is verified successfully
@@ -267,36 +288,57 @@ o	Call the square() function and display the result.
 Program:
 ```
 #include <stdio.h>
-void square();
-int main(){
-    
-    square();
-    return 0;
-}
-void square(){
-    int a;
-    scanf("%d",&a);
-    float ans = a*a;
-    printf("The square of %d is : %.2f",a,ans);
+int square() {
+    int num;
+    printf("Enter a number: ");
+    scanf("%d", &num);
+
+    return num * num;
 }
 
+int main() {
+    int result;
+
+    result = square();
+
+    printf("Square of the number: %d\n", result);
+
+    return 0;
+}
 
 ```
 
 
-
-
 Output:
 
-
-![image](https://github.com/user-attachments/assets/ca6c90e9-e1d1-4ba0-ad2e-48ab75b25265)
-
-
-
-
-
+![image](https://github.com/user-attachments/assets/09ece90a-d42d-49cf-90dc-c80239616845)
 
 
 Result:
 Thus, the program is verified successfully
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
