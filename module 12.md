@@ -1,5 +1,6 @@
-EXP NO 26: C PROGRAM TO DISPLAY STACK ELEMENTS USING LINKED LIST.
 
+
+EXP NO 26: C PROGRAM TO DISPLAY STACK ELEMENTS USING LINKED LIST.
 Aim:
 To write a C program to display stack elements using linked list.
 
@@ -14,25 +15,27 @@ Algorithm:
  
 Program:
 ```
-struct Node   
-{  
-char data;  
-struct Node *next;  
-}*head;  
-void display()  
-{  
-    struct Node *p;
+struct Node
+{
+    int data;
+    struct Node *next;
+}*head;
+void display()
+{
+    struct Node *p; 
+    p=head;
     while(p!=NULL)
     {
-        printf("%c\n",p->data);
-        p = p->next;
+        printf("%d\n",p->data);
+        p=p->next;
+        
     }
 }
 ```
 
 Output:
 
-![image](https://github.com/user-attachments/assets/415ce2f5-3edd-43a5-bb65-0fa8ef3e251d)
+![image](https://github.com/user-attachments/assets/0e89e295-3906-4551-b4e6-a96917dfbf2c)
 
 
 
@@ -43,7 +46,6 @@ Thus, the program to display stack elements using linked list is verified succes
 
 EXP.NO 27: C PROGRAM TO POP AN ELEMENT FROM THE GIVEN STACK USING 
 LINKED LIST.
-
 Aim:
 To write a C program to pop an element from the given stack using liked list.
 
@@ -54,30 +56,30 @@ Algorithm:
 4.	Set head to point to the next node in the stack.
  
 Program:
-
 ```
-struct Node   
-{  
-char data[50];  
-struct Node *next;  
-}*head;  
-void pop()  
+struct Node
 {
-    struct Node *ptr;
-    if(head==NULL){
-        printf("stack is empty\n");
+    int data;
+    struct Node *next;
+}*head; 
+void pop()
+{
+    if(head==NULL)
+    {
+        printf("stack is empty");
+        
     }
-    else{
-        ptr=head;
-        head=ptr->next;
-        free(ptr);
+    else
+    {
+        head=head->next;
+        
     }
 }
 ```
 
 Output:
 
-![image](https://github.com/user-attachments/assets/638f5471-ffa0-4fe5-ab32-dbdcce901e35)
+![image](https://github.com/user-attachments/assets/fd7dffbc-a678-4a17-b191-ff8f70699d3d)
 
 
 
@@ -87,7 +89,6 @@ Thus, the program to pop an element from the given stack using liked list is ver
 
  
 EXP NO:28 C PROGRAM TO DISPLAY QUEUE ELEMENTS USING LINKED LIST.
-
 Aim:
 To write a C program to display queue elements using linked list.
 Algorithm:
@@ -98,28 +99,27 @@ Algorithm:
 5.	End the display function.
  
 Program:
-
 ```
 struct Node
 {
-   int data;
-   struct Node *next;
-}*front=NULL,*rear=NULL,*head;
+    char data;
+    struct Node *next;
+}*front=NULL,*rear=NULL;
 void display()
 {
-    struct Node *p;
-    p = front;
-    if(p==NULL)
+    if(front==NULL)
     {
-        printf("queue is empty\n");
+        printf("queue is empty");
+        
     }
     else
     {
         printf("queue elements:\n");
-        while(p!=NULL)
+        while(front!=NULL)
         {
-            printf("%c\n",p->data);
-            p=p->next;
+            printf("%c\n",front->data);
+            front=front->next;
+            
         }
         
     }
@@ -128,7 +128,7 @@ void display()
 
 Output:
 
-![image](https://github.com/user-attachments/assets/546c4461-b5a3-4195-89d1-203caeeff653)
+![image](https://github.com/user-attachments/assets/6f2c65b6-f3fb-40ce-92bd-dbcc1887cf01)
 
 
 Result:
@@ -150,33 +150,34 @@ Algorithm:
 6.	End of Enqueue Operation
  
 Program:
-
 ```
 struct Node
 {
-   float data;
+   int data;
    struct Node *next;
 }*front=NULL,*rear=NULL;
-void enqueue(float data)
+void enqueue(int data)
 {
-    struct Node *p = (struct Node *)malloc(sizeof(struct Node));
-    p->data = data;
-    p->next = NULL;
-    if(front == NULL)
-    {
-        front = rear = p;
-    }
-    else
-    {
-        rear->next = p;
-        rear = p;
-    }
+   struct Node *p=(struct Node*)malloc(sizeof(struct Node));
+   p->data=data;
+   p->next=NULL;
+   if(front==NULL)
+   {
+       front=rear=p;
+       
+   }
+   else
+   {
+       rear->next=p; 
+       rear=p;
+       
+   }
 }
 ```
 
 Output:
 
-![image](https://github.com/user-attachments/assets/78a76712-5001-4966-afce-5b0c3e1912cb)
+![image](https://github.com/user-attachments/assets/24fd36fe-0464-4413-887a-cde33380e2ee)
 
 
 Result:
@@ -202,18 +203,20 @@ Program:
 ```
 struct Node
 {
-   int data;
+   char data;
    struct Node *next;
 }*front=NULL,*rear=NULL;
 void peek()
 {
-    printf("%d",front->data);
+    printf("%c",front->data);
 }
 ```
 
 Output:
 
-![image](https://github.com/user-attachments/assets/78517c91-a75c-457d-bc94-892370ccbd5a)
+
+![image](https://github.com/user-attachments/assets/07d9d6f3-1089-4dc6-ab39-ed8354786fdc)
+
 
 
 Result:
