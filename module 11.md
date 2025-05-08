@@ -1,5 +1,6 @@
-EXP NO:21 C PROGRAM TO CREATE A FUNCTION TO FIND THE GREATEST NUMBER.
 
+
+EXP NO:21 C PROGRAM TO CREATE A FUNCTION TO FIND THE GREATEST NUMBER
 Aim:
 To write a C program to create a function to find the greatest number
 
@@ -12,28 +13,38 @@ Algorithm:
  
 Program:
 ```
-#include<stdio.h>
-int max(int x, int y)
-{
-    return (x>y)?x:y;
-}
-int max_of_num(int a,int b,int c,int d)
-{
-    int set1,set2;
-    set1 = max(a,b);
-    set2 = max(b,c);
-    return max(set1,set2);
-}
-int main()
-{
-    int a,b,c,d;
-    scanf("%d%d%d%d",&a,&b,&c,&d);
-    printf("%d",max_of_num(a,b,c,d));
+#include<stdio.h> 
+int max_of_four(int a,int b,int c,int d) 
+{ 
+if(a>b && a>c && a>d) 
+{ 
+return a; 
+} 
+else if(b>a && b>c && b>d) 
+{ 
+return b; 
+} 
+else if(c>a && c>b && c>d) 
+{ 
+return c; 
+} 
+else 
+{ 
+return d; 
+} 
+} 
+int main() 
+{ 
+int n1,n2,n3,n4,greater; 
+scanf("%d%d%d%d",&n1,&n2,&n3,&n4); 
+greater=max_of_four(n1,n2,n3,n4); 
+printf("%d",greater); 
 }
 ```
 
 Output:
-![image](https://github.com/user-attachments/assets/5d5251b5-2f25-4c30-8707-b0047b294df4)
+
+![image](https://github.com/user-attachments/assets/cfe98a92-7e0e-47b6-b645-557c3b16a0e8)
 
 
 Result:
@@ -42,7 +53,6 @@ Thus, the program  that create a function to find the greatest number is verifie
 
  
 EXP NO:22 C PROGRAM TO PRINT THE MAXIMUM VALUES FOR THE AND, OR AND  XOR COMPARISONS
-
 Aim:
 To write a C program to print the maximum values for the AND, OR and XOR comparisons
 
@@ -57,43 +67,41 @@ Algorithm:
  
 Program:
 ```
-#include <stdio.h>
-void calculate_the_maximum(int n, int k) {
-    int max_and = 0;
-    int max_or = 0;
-    int max_xor = 0;
-    for (int a = 1; a < n; a++) {
-        for (int b = a + 1; b <= n; b++) {
-            int and_val = a & b;
-            int or_val = a | b;
-            int xor_val = a ^ b;
-            if (and_val < k && and_val > max_and) {
-                max_and = and_val;
-            }
-            if (or_val < k && or_val > max_or) {
-                max_or = or_val;
-            }
-            if (xor_val < k && xor_val > max_xor) {
-                max_xor = xor_val;
-            }
-        }
-    }
-    printf("%d\n", max_and);
-    printf("%d\n", max_or);
-    printf("%d\n", max_xor);
+#include<stdio.h> 
+void calculate_the_max(int n,int k) 
+{ 
+int a=0,o=0,x=0; 
+for(int i=1;i<=n;i++) 
+{ 
+for(int j=1+i;j<=n;j++) 
+{ 
+if((i&j)>a && (i&j)<k) 
+{ 
+a=i&j; 
+} 
+if((i|j)>o && (i|j)<k) 
+{ 
+o=i|j; 
+} 
+if((i^j)>x && (i^j)<k) 
+{ 
+x=i^j; 
+} 
+} 
+} 
+printf("%d\n%d\n%d\n",a,o,x); 
+} 
+int main() 
+{ 
+int n,k; 
+scanf("%d%d",&n,&k); 
+calculate_the_max(n,k); 
 }
-
-int main() {
-    int n, k;
-    scanf("%d %d", &n, &k);
-    calculate_the_maximum(n, k);
-    return 0;
-}
-
 ```
 
 Output:
-![image](https://github.com/user-attachments/assets/a43a1653-ff78-4366-bd0b-2a07f7e8cc71)
+
+![image](https://github.com/user-attachments/assets/7a117410-27d5-4475-bbd0-a95bb1981149)
 
 
 Result:
@@ -102,8 +110,7 @@ is verified successfully.
 
 
  
-EXP NO:23 C PROGRAM TO WRITE THE LOGIC FOR THE REQUESTS.
-
+EXP NO:23 C PROGRAM TO WRITE THE LOGIC FOR THE REQUESTS
 Aim:
 To write a C program to write the logic for the requests
 
@@ -116,72 +123,48 @@ Algorithm:
  
 Program:
 ```
-#include <stdio.h>
-#include <stdlib.h>
-int* total_no_of_books;
-int** total_no_of_pages;
+#include<stdio.h> 
 int main()
 {
-    int total_no_of_shelves;
-    scanf("%d",&total_no_of_shelves);
-    
-    int total_no_of_queries;
-    scanf("%d",&total_no_of_queries);
-    
-    total_no_of_books = (int *)malloc(sizeof(int)*total_no_of_shelves);
-    total_no_of_pages = (int **)malloc(sizeof(int *)*total_no_of_shelves);
-    
-    for(int i=0;i<total_no_of_shelves;i++)
+    int noshel,noque; 
+    scanf("%d%d",&noshel,&noque); 
+    int shelarr[noshel][noshel];
+    int nobookarr[noshel]; 
+    int k=0,c=0;
+    for(int i=0;i<noque;i++)
     {
-        *(total_no_of_books + i) = 0;
-    }
-    while(total_no_of_queries--)
-    {
-        int type_of_query;
-        scanf("%d",&type_of_query);
-        if(type_of_query == 1)
+        int queno; 
+        scanf("%d",&queno);
+        if(queno==1)
         {
-            int x,y;
-            scanf("%d %d",&x,&y);
-            int booksInShelf = *(total_no_of_books + x);
-            *(total_no_of_pages + x) = (int*)realloc(*(total_no_of_pages+x),sizeof(int)*(booksInShelf+1));
-            *(*(total_no_of_pages + x) + booksInShelf) = y;
-            *(total_no_of_books + x) +=1;
+            int shelno,nopage;
+            scanf("%d%d",&shelno,&nopage);
+            shelarr[shelno][k]=nopage; 
+            nobookarr[shelno]=c+=1;
+            k=k+1;
+            
         }
-        else if(type_of_query == 2)
+        else if(queno==2)
         {
-            int x,y;
-            scanf("%d %d",&x,&y);
-            printf("%d\n",*(*(total_no_of_pages + x) + y));
+            int pshelno,pbookno;
+            scanf("%d%d",&pshelno,&pbookno); 
+            printf("%d",shelarr[pshelno][pbookno]);
+            
         }
-        else
+        else if(queno==3)
         {
-            int x;
-            scanf("%d",&x);
-            printf("%d\n",*(total_no_of_books + x));
+            int ppshelno;
+            scanf("%d",&ppshelno); 
+            printf("%d",nobookarr[ppshelno]);
         }
+        
     }
-    if(total_no_of_books)
-    {
-        free(total_no_of_books);
-    }
-    for(int i=0;i<total_no_of_shelves;i++)
-    {
-        if (*(total_no_of_pages + i))
-        {
-            free(*(total_no_of_pages + i));
-        }
-    }
-    if(total_no_of_pages)
-    {
-        free(total_no_of_pages);
-    }
-    return 0;
 }
 ```
 
 Output:
-![image](https://github.com/user-attachments/assets/06d6d043-843c-4085-83c9-9e28dd2606b1)
+
+![image](https://github.com/user-attachments/assets/e0fd25bd-7bc7-4fd1-8802-be79e4252243)
 
 
 Result:
@@ -190,7 +173,6 @@ Thus, the program to write the logic for the requests is verified successfully.
 
  
 EXP NO:24 C PROGRAM PRINT THE SUM OF THE INTEGERS IN THE ARRAY.
-
 Aim:
 To write a C program print the sum of the integers in the array.
 
@@ -208,26 +190,26 @@ Algorithm:
 Program:
 ```
 #include<stdio.h>
-#include<stdlib.h>
 int main()
 {
-    int n,*p;
-    scanf("%d",&n);
-    p=(int*)malloc(sizeof(int)*n);
+    int n; scanf("%d",&n);
+    int a[n];
     int sum=0;
     for(int i=0;i<n;i++)
     {
-        scanf("%d",&p[i]);
-        sum=sum+p[i];
+        scanf("%d",&a[i]);
+        sum=sum+a[i];
+        
     }
     printf("%d",sum);
 }
 ```
 
 Output:
-![image](https://github.com/user-attachments/assets/816fb5b5-e337-4b7d-9700-b79a4ff927a7)
 
- 
+
+ ![image](https://github.com/user-attachments/assets/a66351c5-1fdf-43fa-9bf6-8dcfc4f62d15)
+
 
 
 Result:
@@ -257,26 +239,27 @@ o	If a character is not a space, it may belong to a word. If it's the first non-
 
 Program:
 ```
-   #include<stdio.h>
-   #include<string.h>
-   int main()
-   {
-       char str[100];
-       fgets(str,sizeof(str),stdin);
-       int len=sizeof(str);
-       int count=1;
-        for(int i=0;i<len-1;i++){
-            if(str[i]==' ')
-            count++;
-            
-        }
-        printf("Total number of words in the string is :%d",count);
-       return 0;
-   }
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    char str[100];
+    fgets(str,sizeof(str),stdin);
+    int len=sizeof(str);
+    int count=1;
+     for(int i=0;i<len-1;i++){
+         if(str[i]==' ')
+         count++;
+         
+     }
+     printf("Total number of words in the string is :%d",count);
+    return 0;
+}
 ```
 
 Output:
-![image](https://github.com/user-attachments/assets/05b0cd3b-4908-41a8-ab54-fb43b365ba6a)
+
+![image](https://github.com/user-attachments/assets/dc394db2-fd30-46d4-bf5c-8de7c4bdc503)
 
 
 
